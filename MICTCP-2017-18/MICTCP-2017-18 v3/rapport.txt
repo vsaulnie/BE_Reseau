@@ -1,0 +1,16 @@
+SAULNIER Valentin
+3 MIC E
+
+Cahier des charges MICTCP v2 : 
+
+- Une garantie de fiabilité totale via un mécanisme de reprise des pertes de type « Stop and Wait » 
+	Ok, fonctionne correctement 
+
+-> Tests de tsock_texte avec MICTCP :
+./tsock_texte -p
+./tsock_texte -s
+
+-> Tests de tsock_video avec MICTCP :
+./tsock_video -p -t mictcp
+./tsock_video -s -t mictcp
+

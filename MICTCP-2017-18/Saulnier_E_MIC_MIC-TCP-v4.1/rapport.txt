@@ -1,0 +1,24 @@
+SAULNIER Valentin
+3 MIC E
+
+Cahier des charges MICTCP v4.1 : 
+
+- une phase d’établissement de connexion :
+	Du côté puit, il faut mettre en place un système de synchronisation par un mutex et une varibale condition entre le thread de reception et le accept : On ne peut pas utiliser la fonction IP_recv !)
+	Du côté serveur (connect) on peut utiliser une approche séquencielle proche de celle du send pour envoyer le syn , se mettre en attente du synack via IP_recv puis envoyer l'ack
+
+- le % de pertes admissibles est à présent négocié durant la phase d’établissement de connexion :
+	On garde le transmet le % de perte admissible de chaque côté via le numero de sequence (que l'on utilise pas durant a phase d'établissement de connexion)
+	Ensuite on garde le % de perte le plus contraignant entre le serveur et le client
+
+Benefice de la 4.1 : 
+	La version 4 permet au protocole mictcp d'avoir un fiabilté variable et d'être le plus juste et performant possible en fonction des besoins du client et du serveur.
+
+-> Tests de tsock_texte avec MICTCP :
+./tsock_texte -p 
+./tsock_texte -s
+
+-> Tests de tsock_video avec MICTCP :
+./tsock_video -p -t mictcp
+./tsock_video -s -t mictcp
+

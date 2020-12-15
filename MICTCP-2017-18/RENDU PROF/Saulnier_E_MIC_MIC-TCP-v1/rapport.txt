@@ -1,0 +1,26 @@
+SAULNIER Valentin
+3 MIC E
+
+Cahier des charges MICTCP v1 : 
+
+- Implémenter toutes les fonctions de mic_tcp.h pour réaliser une phase de transfert de données sans garantie de fiabilité. : 
+	Ok, fonctionne correctement
+
+- Démontrer le besoin d’un protocole plus évolué que TCP pour transporter la vidéo dans de bonnes conditions :
+	Le streaming video nécessite des contraintes temporelles dans le transport des données.
+	Dans le cas d'un réseau avec beaucoup de pertes, le temps de reprise des pertes engendre un rendu saccadé et avec trop de coupures.
+	Ces paquets perdus sont réémis car TCP offre un service de transport avec une garantie de fiabilité, or on peut admettre qu'un rendu est correct même si la totalité des paquets ne sont pas délivrés. 
+	Nous cherchons donc à développer MICTCP pour que le rendu soit toujours fluide (contrainte temporelle) et que la qualité de l'image soit acceptable (retransmission de paquets lorsque trop sont perdus). 
+
+-> Tests de tsock_texte avec MICTCP :
+./tsock_texte -p
+./tsock_texte -s
+
+-> Tests de tsock_video avec MICTCP :
+./tsock_video -p -t mictcp
+./tsock_video -s -t mictcp
+
+-> Tests de tsock_texte avec TCP :
+./tsock_video -p -t tcp
+./tsock_video -s -t tcp
+
